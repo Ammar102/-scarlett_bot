@@ -1,0 +1,41 @@
+from keep_alive import keep_alive
+import telebot
+import os
+
+# Keep the bot running on Railway
+keep_alive()
+
+# Get bot token from environment variable
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+bot = telebot.TeleBot(BOT_TOKEN)
+
+# Start command
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.send_message(
+        message.chat.id,
+        "✨ Welcome to ScarlettBliss ✨\nChoose from the menu:\n"
+        "/soft_packages\n/premium_packages\n/custom\n/order\n/help"
+    )
+
+# Soft packages info
+@bot.message_handler(commands=['soft_packages'])
+def soft_packages(message):
+    bot.send_message(
+        message.chat.id,
+        "💖 *Soft Packages*:\n\n"
+        "1. Bliss Touch – €5\n"
+        "📸 10 photos + 1 short video\n\n"
+        "2. Scarlett Heat – €20\n"
+        "📷 20 photos + 1 sensual video\n\n"
+        "Use /order to place a request."
+    )
+
+# Premium packages info
+@bot.message_handler(commands=['premium_packages'])
+def premium_packages(message):
+    bot.send_message(
+        message.chat.id,
+        "🔒 *Premium VIP Content*:\n\n"
+        "🔥 Intimate Uncut – €250\n"
+        "🔥 Scarlett’s S
